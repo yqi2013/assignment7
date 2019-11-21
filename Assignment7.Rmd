@@ -78,4 +78,6 @@ kappa(matrix1, exact = TRUE)/kappa(matrix1)
 
 ```
 
+### To Submit Your Assignment
 
+Please submit your assignment by first "knitting" your RMarkdown document into an html file and then commit, push and pull request both the RMarkdown file and the html file.
