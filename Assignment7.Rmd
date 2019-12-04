@@ -17,6 +17,7 @@ online.data <- read.csv(file = "online.data.csv", header = TRUE)
 #Visualization 
 ```{r}
 #Start by creating histograms of the distributions for all variables (#HINT: look up "facet" in the ggplot documentation)
+install.packages("ggplot2")
 library(ggplot2)
 library(tidyverse)
 
@@ -92,20 +93,21 @@ unlist(slot(performance(pred.detail2,"auc"), "y.values"))
 ```{r}
 #Look at the ROC plot for your first model. Based on this plot choose a probability threshold that balances capturing the most correct predictions against false positives. Then generate a new variable in your data set that classifies each student according to your chosen threshold.
 
-threshold.pred1 <- 
+threshold.pred1 <- 0.5
+online.data$pred.class <- predict(c.tree.level, threshold = threshold.pred1, type = "class")
 
 #Now generate three diagnostics:
 
-D1$accuracy.model1 <-
+online.data$accuracy.model1 <- sum(online.data$pred.class == online.data$level.up)/length(online.data$level.up)
 
-D1$precision.model1 <- 
+online.data$precision.model1 <- 
 
-D1$recall.model1 <- 
+online.data$recall.model1 <- 
 
 #Finally, calculate Kappa for your model according to:
 
 #First generate the table of comparisons
-table1 <- table(D1$level.up, D1$threshold.pred1)
+table1 <- table(online.data$level.up, online.data$threshold.pred1)
 
 #Convert to matrix
 matrix1 <- as.matrix(table1)
